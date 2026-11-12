@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#5f4e19" name="theme-color"/>
+<meta content="판례인사이트 — 판결을 읽고, 시민 리뷰를 남기고, 다양한 관점으로 사법의 민주적 책임성을 살펴보는 공간." name="description"/>
+<title>판례인사이트 | 시민의 참여로 사법을 살펴보다</title>
+<style>
+    :root {
+      --ink: #302d25;
+      --muted: #77756f;
+      --gold: #896100;
+      --gold-dark: #5f4e19;
+      --cream: #f7f6f2;
+      --paper: #ffffff;
+      --line: #e7e5df;
+      --olive: #5f4e19;
+      --soft-gold: #f1ead7;
+      --shadow: 0 24px 70px rgba(95, 78, 25, .09);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+      line-height: 1.65;
+      letter-spacing: -.025em;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(180,180,180,.35);
+    }
+    .nav { height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; flex-shrink: 0; line-height: 0; }
+.brand-logo { display:block; width:220px; height:auto; aspect-ratio:1000 / 374; object-fit:contain; }
+    .nav-links { display: flex; align-items: center; gap: 32px; color: #686658; font-size: 14px; font-weight: 650; }
+    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-cta, .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border-radius: 999px; font-weight: 750; transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .nav-cta { padding: 12px 19px; background: var(--olive); color: white; font-size: 13px; }
+    .nav-cta:hover, .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(95,78,25,.20); }
+    .hero { overflow: hidden; position: relative; background: var(--cream); }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 560px; height: 560px; right: -170px; top: -275px; border: 1px solid rgba(137,97,0,.15); }
+    .hero::after { width: 430px; height: 430px; right: -105px; top: -210px; border: 1px solid rgba(137,97,0,.11); }
+    .hero-grid { min-height: 625px; padding: 84px 0 82px; display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 56px; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--gold-dark); font-size: 12px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 1px; background: var(--gold); }
+    h1 { margin: 22px 0 20px; font-size: clamp(39px, 5.1vw, 62px); line-height: 1.22; letter-spacing: -.075em; font-weight: 850; }
+    h1 em { color: var(--gold-dark); font-style: normal; }
+    .hero-copy { max-width: 530px; color: #6c6a5e; font-size: 17px; line-height: 1.85; word-break: keep-all; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .btn { min-height: 54px; padding: 0 25px; font-size: 14px; }
+    .btn-primary { color: #fff; background: var(--olive); box-shadow: 0 8px 20px rgba(95,78,25,.13); }
+    .btn-secondary { color: var(--ink); background: rgba(255,255,255,.65); border: 1px solid #ded9c9; }
+    .btn-secondary:hover { background: #fff; transform: translateY(-2px); }
+    .arrow { font-size: 18px; line-height: 1; }
+    .hero-note { margin-top: 22px; color: #928f82; font-size: 12px; }
+    .hero-art { position: relative; min-height: 430px; display: flex; align-items: center; justify-content: center; }
+    .glow { position: absolute; width: 390px; height: 390px; border-radius: 50%; background: radial-gradient(circle, rgba(202,178,112,.24), rgba(202,178,112,0) 68%); }
+    .case-window {
+      position: relative; width: min(100%, 455px); padding: 27px; border: 1px solid rgba(228,222,205,.95);
+      border-radius: 19px; background: rgba(255,254,250,.95); box-shadow: 0 28px 75px rgba(65,54,25,.16); transform: rotate(-2deg);
+    }
+    .window-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .window-dots { display: flex; gap: 5px; }
+    .window-dots i { display: block; width: 6px; height: 6px; background: #d7d1c1; border-radius: 50%; }
+    .window-label { color: #a29c8a; font-size: 10px; font-weight: 800; letter-spacing: .13em; }
+    .case-tag { margin-top: 22px; display: inline-block; padding: 5px 9px; background: #f2eee2; color: #5f4e19; border-radius: 5px; font-size: 10px; font-weight: 800; }
+    .case-title { margin: 12px 0 4px; font-size: 20px; font-weight: 850; letter-spacing: -.05em; }
+    .case-sub { color: #999484; font-size: 11px; }
+    .mock-lines { margin: 23px 0 21px; display: grid; gap: 9px; }
+    .mock-lines span { display: block; height: 7px; border-radius: 10px; background: #eeece5; }
+    .mock-lines span:nth-child(1) { width: 94%; }
+    .mock-lines span:nth-child(2) { width: 100%; }
+    .mock-lines span:nth-child(3) { width: 82%; }
+    .mock-lines span:nth-child(4) { width: 68%; }
+    .insight-card { padding: 17px 18px; border: 1px solid #e9e1cd; border-radius: 12px; background: #fbf8ef; }
+    .insight-head { display: flex; align-items: center; gap: 8px; color: #5f4e19; font-size: 11px; font-weight: 850; }
+    .spark { width: 20px; height: 20px; display: grid; place-items: center; border-radius: 6px; background: #e9dfc3; font-size: 12px; }
+    .insight-card p { margin: 9px 0 0; color: #6f6a59; font-size: 12px; line-height: 1.75; }
+    .floating-pill { position: absolute; z-index: 2; display: flex; align-items: center; gap: 9px; padding: 12px 15px; background: white; border: 1px solid #eee9dc; border-radius: 12px; box-shadow: 0 13px 30px rgba(55,48,29,.12); font-size: 11px; font-weight: 800; }
+    .floating-pill b { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 8px; background: #f3eddb; color: #5f4e19; }
+    .pill-one { left: -15px; top: 52px; transform: rotate(3deg); }
+    .pill-two { right: -7px; bottom: 50px; transform: rotate(3deg); }
+    .trust-strip { background: #fffefa; border-bottom: 1px solid var(--line); }
+    .trust-inner { min-height: 94px; display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; padding: 22px 0; }
+    .trust-item { display: flex; align-items: center; gap: 10px; color: #777466; font-size: 13px; font-weight: 700; }
+    .trust-item b { color: var(--gold-dark); font-size: 19px; }
+    section { scroll-margin-top: 90px; }
+    .section { padding: 108px 0; }
+    .section-head { max-width: 650px; margin: 0 auto 52px; text-align: center; }
+    .section-head .eyebrow { justify-content: center; }
+    h2 { margin: 16px 0 13px; font-size: clamp(30px, 3.5vw, 43px); line-height: 1.3; letter-spacing: -.07em; }
+    .section-desc { color: var(--muted); font-size: 15px; word-break: keep-all; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .feature {
+      min-height: 255px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+    }
+    .feature:hover { transform: translateY(-5px); border-color: #d8cba9; box-shadow: var(--shadow); }
+    .feature-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: #f3efe4; color: var(--gold-dark); }
+    .feature-icon svg { width: 22px; height: 22px; }
+    .feature h3 { margin: 22px 0 9px; font-size: 18px; letter-spacing: -.045em; }
+    .feature p { margin: 0; color: #777568; font-size: 13px; line-height: 1.8; word-break: keep-all; }
+    .feature small { display: inline-block; margin-top: 17px; color: #9a8a61; font-size: 10px; font-weight: 850; letter-spacing: .1em; }
+    .ai-band { padding: 82px 0; background: #514318; color: white; overflow: hidden; position: relative; }
+    .ai-band::after { content: "M"; position: absolute; right: 5%; top: -125px; font-size: 440px; line-height: 1; font-weight: 900; color: rgba(255,255,255,.035); pointer-events: none; }
+    .ai-grid { display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 70px; position: relative; z-index: 1; }
+    .ai-band .eyebrow { color: #dfcc91; }
+    .ai-band h2 { max-width: 510px; margin-top: 18px; }
+    .ai-band p { max-width: 520px; color: #c9c5b7; font-size: 14px; line-height: 1.9; word-break: keep-all; }
+    .ai-list { display: grid; gap: 12px; margin-top: 25px; }
+    .ai-list div { display: flex; align-items: center; gap: 11px; color: #e5e0d2; font-size: 13px; }
+    .check { width: 20px; height: 20px; display: grid; place-items: center; border: 1px solid #a88b45; color: #e4ca7a; border-radius: 50%; font-size: 11px; }
+    .chat-panel { padding: 23px; border: 1px solid rgba(255,255,255,.14); border-radius: 18px; background: rgba(255,255,255,.07); backdrop-filter: blur(8px); }
+    .chat-head { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 12px; font-weight: 800; }
+    .m-avatar { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 8px; background: #896100; color: white; font-weight: 900; }
+    .chat-bubble { margin-top: 17px; max-width: 92%; padding: 13px 15px; border-radius: 12px; font-size: 12px; line-height: 1.75; }
+    .chat-question { margin-left: auto; background: rgba(255,255,255,.13); color: #f5f1e6; border-bottom-right-radius: 4px; }
+    .chat-answer { background: #fbf8ef; color: #56513f; border-bottom-left-radius: 4px; }
+    .chat-answer b { color: #5f4e19; }
+    .chat-foot { margin-top: 18px; color: #a9a48f; font-size: 10px; text-align: center; }
+    .steps { background: var(--cream); }
+    .step-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; counter-reset: step; }
+    .step { padding: 27px 27px 30px; border-radius: 17px; background: #fffefa; border: 1px solid #ece7d9; counter-increment: step; }
+    .step-num { color: #896100; font-size: 11px; font-weight: 900; letter-spacing: .13em; }
+    .step-num::after { content: "0" counter(step); }
+    .step h3 { margin: 22px 0 8px; font-size: 17px; }
+    .step p { margin: 0; color: #777568; font-size: 13px; line-height: 1.8; }
+    .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .community-card { padding: 34px; border-radius: 19px; border: 1px solid var(--line); background: #fff; }
+    .community-card.dark { background: #f3f1eb; border-color: #e6deca; }
+    .community-label { color: #896100; font-size: 10px; font-weight: 900; letter-spacing: .13em; }
+    .community-card h3 { margin: 13px 0 9px; font-size: 23px; letter-spacing: -.055em; }
+    .community-card p { margin: 0; color: #777568; font-size: 13px; line-height: 1.85; word-break: keep-all; }
+    .rating-demo { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #e9e4d7; }
+    .rating-demo span { color: #8a7a50; font-size: 12px; font-weight: 750; }
+    .rating-demo strong { color: #896100; font-size: 17px; letter-spacing: .1em; }
+    .rank-demo { margin-top: 22px; display: grid; gap: 9px; }
+    .rank-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 9px; background: rgba(255,255,255,.72); font-size: 11px; }
+    .rank-row b { color: #896100; }
+    .rank-row i { margin-left: auto; color: #9a9689; font-style: normal; }
+    .notice { padding: 24px 0 72px; }
+    .notice-inner { display: flex; align-items: flex-start; gap: 13px; padding: 17px 19px; border-radius: 12px; background: #f5f4ef; color: #807d70; font-size: 11px; line-height: 1.8; }
+    .notice-inner b { flex-shrink: 0; color: #5f4e19; }
+    .final-cta { padding: 88px 0; text-align: center; background: #f3f1eb; }
+    .final-cta h2 { margin: 0 auto 14px; }
+    .final-cta p { margin: 0 auto 28px; color: #777568; font-size: 14px; }
+    footer { padding: 24px 0; background: #f7f6f2; color: #6f6a5d; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-brand { display: inline-flex; align-items: center; line-height: 0; }
+.footer-logo { display:block; width:185px; height:auto; aspect-ratio:1000 / 374; object-fit:contain; }
+    .footer-copy { font-size: 11px; color: #858178; }
+    .footer-link { color: #896100; font-size: 12px; font-weight: 700; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 18px; }
+      .hero-grid { gap: 24px; min-height: 580px; }
+      .hero-art { transform: scale(.92); }
+      .ai-grid { gap: 35px; }
+    }
+    @media (max-width: 700px) {
+      .wrap { width: min(100% - 34px, 560px); }
+      .nav { height: 78px; }
+      .nav-links { display: none; }
+      .nav-cta { padding: 10px 14px; font-size: 11px; }
+      .hero-grid { min-height: auto; padding: 68px 0 50px; grid-template-columns: 1fr; gap: 25px; }
+      h1 { font-size: clamp(37px, 10vw, 51px); }
+      .hero-copy { font-size: 15px; }
+      .hero-art { min-height: 350px; transform: none; margin: 0 7px; }
+      .case-window { padding: 21px; }
+      .pill-one { left: -6px; top: 23px; }
+      .pill-two { right: -5px; bottom: 17px; }
+      .trust-inner { justify-content: flex-start; gap: 15px 24px; }
+      .trust-item { font-size: 11px; }
+      .section { padding: 76px 0; }
+      .section-head { margin-bottom: 34px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 12px; }
+      .feature { min-height: 0; padding: 24px; }
+      .feature h3 { margin-top: 17px; }
+      .ai-band { padding: 68px 0; }
+      .ai-grid { grid-template-columns: 1fr; gap: 32px; }
+      .step-grid, .community-grid { grid-template-columns: 1fr; }
+      .step { padding: 23px; }
+      .community-card { padding: 26px; }
+      .notice { padding-bottom: 50px; }
+      .notice-inner { display: block; }
+      .notice-inner b { display: block; margin-bottom: 5px; }
+      .final-cta { padding: 70px 0; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  
+    /* Citizen review-first landing page */
+    .hero { background: linear-gradient(118deg, #f8f7f3 0%, #f3f0e6 100%); }
+    .hero-grid { min-height: 660px; padding-top: 78px; padding-bottom: 76px; }
+    .hero h1 { font-size: clamp(40px, 5vw, 60px); }
+    .hero h1 em { color: #896100; }
+    .hero-copy { max-width: 570px; }
+    .hero-art { min-height: 500px; }
+    .review-board {
+      position: relative; z-index: 1; width: min(100%, 450px); padding: 27px 29px 22px;
+      border: 1px solid #e5ddca; border-radius: 22px; background: rgba(255,255,255,.97);
+      box-shadow: 0 30px 80px rgba(69,55,18,.16); transform: rotate(-1.2deg);
+    }
+    .review-board-top { display:flex; align-items:center; justify-content:space-between; padding-bottom:15px; border-bottom:1px solid #eeeae0; }
+    .review-board-label { color:#5f4e19; font-size:10px; font-weight:900; letter-spacing:.16em; }
+    .review-board-status { padding:5px 9px; border-radius:99px; color:#6b5517; background:#f4eedc; font-size:10px; font-weight:800; }
+    .review-board-kicker { margin-top:23px; color:#896100; font-size:11px; font-weight:850; }
+    .review-board h3 { margin:8px 0 8px; color:#302d25; font-size:25px; line-height:1.35; letter-spacing:-.06em; }
+    .review-board-copy { margin:0; color:#777568; font-size:12px; line-height:1.8; }
+    .review-prompt { margin-top:20px; padding:16px; border:1px solid #eee6d2; border-radius:13px; background:#fbf9f3; }
+    .review-prompt > span { display:block; margin-bottom:8px; color:#9a8a61; font-size:9px; font-weight:900; letter-spacing:.13em; }
+    .review-prompt strong { display:block; color:#4a4025; font-size:13px; line-height:1.6; }
+    .review-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+    .review-tags i { padding:5px 8px; border-radius:6px; color:#736744; background:#f0ecdf; font-size:10px; font-style:normal; }
+    .review-rating-row { display:flex; align-items:center; justify-content:space-between; margin-top:17px; color:#777568; font-size:11px; font-weight:750; }
+    .review-rating-row strong { color:#896100; font-size:17px; letter-spacing:.12em; }
+    .review-input-preview { margin-top:9px; padding:12px 13px; border:1px solid #e9e6de; border-radius:9px; color:#aaa69b; font-size:11px; }
+    .review-board-cta { display:flex; align-items:center; justify-content:center; gap:9px; margin-top:13px; padding:12px; border-radius:9px; color:#fff; background:#5f4e19; font-size:12px; font-weight:800; }
+    .review-board-cta span { font-size:16px; }
+    .review-board-foot { margin-top:12px; color:#a09b8e; text-align:center; font-size:9px; }
+    .pill-one { left:-24px; top:45px; }
+    .pill-two { right:-22px; bottom:38px; }
+    .trust-strip { background:#fff; }
+    .trust-item { font-size:12px; }
+    .civic-section { background:#fff; }
+    .civic-section .section-head { margin-bottom:38px; }
+    .civic-section .section-head h2 em { color:#896100; font-style:normal; }
+    .civic-lead { display:grid; grid-template-columns:180px 1fr auto; align-items:center; gap:26px; margin-bottom:25px; padding:28px 30px; border-radius:18px; color:#fff; background:#514318; }
+    .civic-lead-mark { color:#e6cf8b; font-size:12px; font-weight:900; letter-spacing:.08em; white-space:nowrap; }
+    .civic-lead p { margin:0; color:#f0ecdf; font-size:14px; line-height:1.9; word-break:keep-all; }
+    .civic-lead .btn { min-height:46px; padding:0 18px; white-space:nowrap; color:#514318; background:#f1e5c3; font-size:12px; }
+    .civic-principles { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; scroll-margin-top:110px; }
+    .civic-principle { position:relative; min-height:235px; padding:26px; border:1px solid #e9e5db; border-radius:17px; background:#fffefa; }
+    .civic-number { position:absolute; top:22px; right:23px; color:#c9bea0; font-size:12px; font-weight:900; letter-spacing:.1em; }
+    .civic-icon { width:43px; height:43px; display:grid; place-items:center; border-radius:12px; color:#5f4e19; background:#f1ead7; font-size:20px; }
+    .civic-principle h3 { margin:19px 0 8px; color:#383326; font-size:18px; letter-spacing:-.04em; }
+    .civic-principle p { margin:0; color:#777568; font-size:12px; line-height:1.85; word-break:keep-all; }
+    .civic-principle small { display:inline-block; margin-top:16px; color:#9a8a61; font-size:9px; font-weight:900; letter-spacing:.13em; }
+    .civic-bottom-note { display:flex; gap:15px; align-items:flex-start; margin-top:20px; padding:17px 19px; border-left:3px solid #896100; background:#f8f6ef; }
+    .civic-bottom-note b { flex-shrink:0; color:#5f4e19; font-size:12px; }
+    .civic-bottom-note span { color:#777568; font-size:11px; line-height:1.8; }
+    #features { background:#f8f7f3; }
+    #features .feature:nth-child(-n+2) { border-color:#d9c99f; background:#fffdf7; }
+    #features .feature:nth-child(-n+2) .feature-icon { background:#5f4e19; color:#fff; }
+    .steps { background:#f3f0e6; }
+    .final-cta { background:#f1ead7; }
+    @media (max-width:900px) {
+      .civic-lead { grid-template-columns:1fr; gap:12px; }
+      .civic-lead .btn { justify-self:start; }
+      .civic-principles { gap:12px; }
+      .civic-principle { padding:21px; }
+    }
+    @media (max-width:700px) {
+      .hero-grid { padding-top:55px; }
+      .hero-art { min-height:455px; margin:0; }
+      .review-board { padding:22px 20px 18px; transform:none; }
+      .review-board h3 { font-size:22px; }
+      .pill-one { left:-8px; top:5px; }
+      .pill-two { right:-8px; bottom:4px; }
+      .civic-lead { padding:23px; }
+      .civic-principles { grid-template-columns:1fr; }
+      .civic-principle { min-height:0; }
+      .civic-bottom-note { display:block; }
+      .civic-bottom-note b { display:block; margin-bottom:5px; }
+    }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+<div class="wrap nav">
+<a aria-label="판례인사이트 홈" class="brand" href="#top">
+<svg xmlns="http://www.w3.org/2000/svg" class="brand-logo" width="1000" height="374" viewBox="0 0 1000 374" role="img" aria-labelledby="header-logo-title"><title id="header-logo-title">판례인사이트</title><defs><linearGradient id="header-gradient" x1="0" y1="0" x2="0.18" y2="1"><stop offset="0" stop-color="#5B4C1D"/><stop offset="0.52" stop-color="#705716"/><stop offset="1" stop-color="#896100"/></linearGradient></defs><rect x="44" y="122" width="127" height="128" fill="url(#header-gradient)"/><path fill="#fff" fill-rule="evenodd" d="M 72 158 L 72 164 L 71 165 L 71 185 L 70 186 L 70 203 L 69 204 L 69 219 L 68 220 L 68 221 L 89 221 L 89 192 L 90 191 L 91 191 L 93 193 L 93 197 L 94 198 L 94 200 L 95 201 L 95 204 L 96 205 L 96 208 L 97 209 L 97 212 L 98 213 L 98 216 L 99 217 L 99 220 L 100 221 L 115 221 L 115 218 L 116 217 L 116 214 L 117 213 L 117 209 L 118 208 L 118 205 L 119 204 L 119 202 L 120 201 L 120 198 L 121 197 L 121 194 L 122 193 L 122 191 L 123 190 L 124 190 L 125 191 L 125 213 L 126 214 L 126 221 L 146 221 L 146 217 L 145 216 L 145 198 L 144 197 L 144 180 L 143 179 L 143 163 L 142 162 L 142 158 L 116 158 L 116 160 L 115 161 L 115 164 L 114 165 L 114 168 L 113 169 L 113 172 L 112 173 L 112 177 L 111 178 L 111 181 L 110 182 L 110 185 L 109 186 L 109 189 L 108 190 L 107 190 L 105 188 L 105 185 L 104 184 L 104 181 L 103 180 L 103 177 L 102 176 L 102 173 L 101 172 L 101 169 L 100 168 L 100 164 L 99 163 L 99 160 L 98 159 L 98 158 Z"/><rect x="217" y="114" width="16" height="140" rx="1" fill="#B4B4B4"/><path fill="#5F4E19" fill-rule="evenodd" d="M 885 228 L 885 241 L 993 241 L 994 240 L 994 228 Z M 300 215 L 300 252 L 381 252 L 381 240 L 318 240 L 316 238 L 316 215 Z M 544 213 L 544 238 L 543 239 L 543 245 L 544 246 L 544 252 L 626 252 L 626 240 L 561 240 L 560 239 L 560 213 Z M 406 146 L 406 158 L 407 159 L 430 159 L 431 160 L 431 178 L 430 179 L 407 179 L 407 213 L 406 214 L 406 217 L 407 218 L 407 227 L 436 227 L 437 226 L 445 226 L 446 225 L 452 225 L 453 224 L 453 221 L 452 220 L 452 212 L 445 212 L 444 213 L 435 213 L 434 214 L 424 214 L 422 212 L 422 193 L 423 192 L 446 192 L 446 146 Z M 671 144 L 671 172 L 670 173 L 670 178 L 669 179 L 669 182 L 668 183 L 668 185 L 667 186 L 667 188 L 666 189 L 666 190 L 665 191 L 665 192 L 664 193 L 664 194 L 663 195 L 663 196 L 662 197 L 662 198 L 660 200 L 660 201 L 657 204 L 657 205 L 651 211 L 650 211 L 648 213 L 647 213 L 645 215 L 644 215 L 643 216 L 642 216 L 642 217 L 645 220 L 645 221 L 648 224 L 648 225 L 651 228 L 651 229 L 653 229 L 654 228 L 655 228 L 657 226 L 658 226 L 661 223 L 662 223 L 666 219 L 666 218 L 670 214 L 670 213 L 672 211 L 672 210 L 673 209 L 673 208 L 674 207 L 674 206 L 675 205 L 675 204 L 676 203 L 676 202 L 677 201 L 677 200 L 678 199 L 678 197 L 679 196 L 680 196 L 681 197 L 681 198 L 682 199 L 682 201 L 683 202 L 683 203 L 684 204 L 684 205 L 685 206 L 685 207 L 686 208 L 686 209 L 688 211 L 688 212 L 691 215 L 691 216 L 698 223 L 699 223 L 701 225 L 702 225 L 704 227 L 706 227 L 707 226 L 707 225 L 710 222 L 710 221 L 714 217 L 714 216 L 715 215 L 715 214 L 714 214 L 712 212 L 711 212 L 708 209 L 707 209 L 701 203 L 701 202 L 698 199 L 698 198 L 696 196 L 696 195 L 695 194 L 695 193 L 694 192 L 694 191 L 693 190 L 693 188 L 692 187 L 692 186 L 691 185 L 691 182 L 690 181 L 690 178 L 689 177 L 689 173 L 688 172 L 688 144 Z M 285 145 L 285 157 L 294 157 L 295 158 L 295 192 L 293 194 L 282 194 L 282 195 L 283 196 L 283 203 L 284 204 L 284 207 L 290 207 L 291 206 L 321 206 L 322 205 L 334 205 L 335 204 L 343 204 L 344 203 L 350 203 L 351 202 L 354 202 L 354 195 L 353 194 L 353 190 L 352 190 L 351 191 L 343 191 L 342 192 L 341 192 L 339 190 L 339 159 L 341 157 L 349 157 L 349 144 L 286 144 Z M 312 157 L 323 157 L 324 158 L 324 191 L 322 193 L 311 193 L 310 192 L 310 159 Z M 898 143 L 898 196 L 897 197 L 897 199 L 898 200 L 898 209 L 982 209 L 982 197 L 915 197 L 914 196 L 914 184 L 916 182 L 978 182 L 978 170 L 915 170 L 914 169 L 914 157 L 915 156 L 981 156 L 981 143 Z M 794 143 L 793 144 L 790 144 L 789 145 L 788 145 L 787 146 L 786 146 L 785 147 L 784 147 L 776 155 L 776 156 L 774 158 L 774 159 L 773 160 L 773 161 L 772 162 L 772 164 L 771 165 L 771 167 L 770 168 L 770 171 L 769 172 L 769 177 L 768 178 L 768 193 L 769 194 L 769 199 L 770 200 L 770 203 L 771 204 L 771 206 L 772 207 L 772 209 L 773 210 L 773 211 L 774 212 L 774 213 L 776 215 L 776 216 L 779 219 L 779 220 L 781 222 L 782 222 L 784 224 L 785 224 L 787 226 L 789 226 L 790 227 L 792 227 L 793 228 L 806 228 L 807 227 L 809 227 L 810 226 L 811 226 L 812 225 L 813 225 L 814 224 L 815 224 L 823 216 L 823 215 L 824 214 L 824 213 L 825 212 L 825 211 L 826 210 L 826 209 L 827 208 L 827 207 L 828 206 L 828 203 L 829 202 L 829 199 L 830 198 L 830 191 L 831 190 L 831 181 L 830 180 L 830 173 L 829 172 L 829 169 L 828 168 L 828 166 L 827 165 L 827 163 L 826 162 L 826 161 L 825 160 L 825 159 L 824 158 L 824 157 L 822 155 L 822 154 L 816 148 L 815 148 L 813 146 L 812 146 L 811 145 L 810 145 L 809 144 L 806 144 L 805 143 Z M 795 158 L 804 158 L 806 160 L 807 160 L 809 162 L 809 163 L 811 165 L 811 166 L 812 167 L 812 168 L 813 169 L 813 171 L 814 172 L 814 176 L 815 177 L 815 194 L 814 195 L 814 199 L 813 200 L 813 202 L 812 203 L 812 204 L 811 205 L 811 206 L 810 207 L 810 208 L 806 212 L 805 212 L 804 213 L 802 213 L 801 214 L 798 214 L 797 213 L 795 213 L 794 212 L 793 212 L 788 207 L 788 206 L 787 205 L 787 204 L 786 203 L 786 201 L 785 200 L 785 196 L 784 195 L 784 176 L 785 175 L 785 171 L 786 170 L 786 168 L 787 167 L 787 166 L 789 164 L 789 163 L 793 159 L 794 159 Z M 545 144 L 544 145 L 543 145 L 542 146 L 541 146 L 540 147 L 539 147 L 536 150 L 535 150 L 532 153 L 532 154 L 529 157 L 529 158 L 528 159 L 528 160 L 527 161 L 527 163 L 526 164 L 526 169 L 525 170 L 525 175 L 526 176 L 526 180 L 527 181 L 527 183 L 528 184 L 528 185 L 529 186 L 529 187 L 530 188 L 530 189 L 534 193 L 534 194 L 535 194 L 538 197 L 539 197 L 541 199 L 542 199 L 543 200 L 545 200 L 546 201 L 548 201 L 549 202 L 555 202 L 556 203 L 560 203 L 561 202 L 567 202 L 568 201 L 570 201 L 571 200 L 572 200 L 573 199 L 574 199 L 575 198 L 576 198 L 578 196 L 579 196 L 585 190 L 585 189 L 586 188 L 586 187 L 588 185 L 588 183 L 589 182 L 589 180 L 590 179 L 590 166 L 589 165 L 589 163 L 588 162 L 588 160 L 587 159 L 587 158 L 585 156 L 585 155 L 578 148 L 577 148 L 575 146 L 573 146 L 572 145 L 571 145 L 570 144 L 568 144 L 567 143 L 562 143 L 561 142 L 554 142 L 553 143 L 549 143 L 548 144 Z M 551 157 L 553 157 L 554 156 L 561 156 L 562 157 L 564 157 L 565 158 L 566 158 L 567 159 L 568 159 L 572 163 L 572 164 L 573 165 L 573 166 L 574 167 L 574 177 L 573 178 L 573 180 L 571 182 L 571 183 L 569 185 L 568 185 L 566 187 L 565 187 L 564 188 L 560 188 L 559 189 L 556 189 L 555 188 L 552 188 L 551 187 L 550 187 L 549 186 L 548 186 L 544 182 L 544 181 L 542 179 L 542 176 L 541 175 L 541 170 L 542 169 L 542 166 L 543 165 L 543 164 L 549 158 L 550 158 Z M 466 136 L 466 163 L 465 164 L 453 164 L 453 177 L 465 177 L 466 178 L 466 193 L 465 194 L 453 194 L 453 207 L 465 207 L 466 208 L 466 249 L 481 249 L 481 136 Z M 722 135 L 722 255 L 738 255 L 738 195 L 739 194 L 755 194 L 755 181 L 739 181 L 738 180 L 738 135 Z M 607 135 L 607 220 L 623 220 L 623 135 Z M 361 135 L 361 223 L 377 223 L 377 183 L 378 182 L 393 182 L 393 169 L 378 169 L 377 168 L 377 135 Z M 848 134 L 848 255 L 864 255 L 864 134 Z M 491 134 L 491 254 L 506 254 L 506 134 Z"/></svg>
+</a>
+<nav aria-label="주요 메뉴" class="nav-links"><a href="#community">시민 리뷰</a><a href="#principles">민주적 통제</a><a href="#features">판례 정보</a><a href="#ai">AI 인사이트</a></nav>
+<a class="nav-cta" href="https://pansamap.maru.ai.kr/" rel="noopener noreferrer" target="_blank">서비스 바로가기 <span class="arrow">↗</span></a>
+</div>
+</header>
+<main id="top">
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<div class="eyebrow">CITIZEN REVIEW · DEMOCRATIC ACCOUNTABILITY</div>
+<h1>사법부를 향한<br/><em>시민의 질문과 참여</em>,<br/>판결에서 시작됩니다</h1>
+<p class="hero-copy">사법부의 독립을 존중하면서도, 판결은 시민이 이해하고 질문하며 토론할 수 있어야 합니다. 판례인사이트에서 판결을 읽고, 시민 리뷰를 남기고, 서로 다른 관점을 함께 살펴보세요.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://pansamap.maru.ai.kr/" rel="noopener noreferrer" target="_blank">시민 리뷰 참여하기 <span class="arrow">↗</span></a>
+<a class="btn btn-secondary" href="#community">시민 참여의 의미 <span class="arrow">↓</span></a>
+</div>
+<div class="hero-note">판결에 대한 시민의 의견을 나누는 열린 공론장 · 리뷰는 작성자의 개인 의견입니다.</div>
+</div>
+<div aria-label="시민 리뷰 작성 화면 예시" class="hero-art">
+<div class="glow"></div>
+<div class="floating-pill pill-one"><b>01</b> 판결을 읽고 이해하기</div>
+<div class="review-board">
+<div class="review-board-top">
+<span class="review-board-label">CITIZEN VOICE</span>
+<span class="review-board-status">시민 참여</span>
+</div>
+<div class="review-board-kicker">판결에 대한 시민 리뷰</div>
+<h3>여러분의 생각을<br/>판결에 남겨주세요</h3>
+<p class="review-board-copy">판결의 이유와 판단 근거를 살펴보고, 나의 관점을 리뷰로 공유할 수 있습니다.</p>
+<div class="review-prompt">
+<span>REVIEW GUIDE</span>
+<strong>이 판결의 판단 근거는 충분히 설명되었나요?</strong>
+<div class="review-tags"><i>판결 이유</i><i>판단 근거</i><i>사회적 영향</i></div>
+</div>
+<div class="review-rating-row"><span>나의 리뷰</span><strong aria-label="별점 예시">★★★★★</strong></div>
+<div class="review-input-preview">판결을 읽고 느낀 점과 생각을 근거와 함께 남겨보세요.</div>
+<a class="review-board-cta" href="https://pansamap.maru.ai.kr/" rel="noopener noreferrer" target="_blank">리뷰 작성하러 가기 <span>↗</span></a>
+<div class="review-board-foot">화면 예시 · 별점과 의견은 작성자의 개인적인 평가입니다.</div>
+</div>
+<div class="floating-pill pill-two"><b>↗</b> 다양한 시민 의견 읽기</div>
+</div>
+</div>
+</section>
+<div class="trust-strip">
+<div class="wrap trust-inner"><div class="trust-item"><b>01</b> 판결서 원문 확인</div><div class="trust-item"><b>02</b> 시민 리뷰 작성</div><div class="trust-item"><b>03</b> 다양한 의견 읽기</div><div class="trust-item"><b>04</b> AI로 판결 이해</div></div>
+</div><section class="section civic-section" id="community">
+<div class="wrap">
+<div class="section-head">
+<div class="eyebrow">CITIZEN VOICE · OPEN DISCUSSION</div>
+<h2>판결을 읽는 시민에서,<br/><em>사법을 질문하는 시민으로</em></h2>
+<p class="section-desc">시민 리뷰는 판결에 대한 생각을 공개적으로 나누고, 서로 다른 관점을 확인하는 참여의 통로입니다.</p>
+</div>
+<div class="civic-lead">
+<div class="civic-lead-mark">민주적 책임성</div>
+<p>민주적 통제는 사법부의 독립을 부정하거나 개별 재판에 압력을 가하는 일이 아닙니다. 사법 작용을 시민이 이해하고, 판결의 이유를 질문하며, 공개적으로 토론할 수 있도록 하는 과정입니다.</p>
+<a class="btn btn-primary" href="https://pansamap.maru.ai.kr/" rel="noopener noreferrer" target="_blank">시민 리뷰 남기기 <span class="arrow">↗</span></a>
+</div>
+<div class="civic-principles" id="principles">
+<article class="civic-principle">
+<span class="civic-number">01</span>
+<div aria-hidden="true" class="civic-icon">▤</div>
+<h3>공개와 이해</h3>
+<p>판결서 원문과 사건 정보를 직접 확인합니다. 요약이나 일부 정보에만 의존하지 않고 판단의 맥락을 살펴봅니다.</p>
+<small>TRANSPARENCY</small>
+</article>
+<article class="civic-principle">
+<span class="civic-number">02</span>
+<div aria-hidden="true" class="civic-icon">✎</div>
+<h3>시민의 참여</h3>
+<p>판결에 대한 별점과 의견을 남깁니다. 시민 각자의 경험과 관점이 공적인 논의에 더해집니다.</p>
+<small>PARTICIPATION</small>
+</article>
+<article class="civic-principle">
+<span class="civic-number">03</span>
+<div aria-hidden="true" class="civic-icon">◎</div>
+<h3>토론과 숙의</h3>
+<p>다른 시민의 리뷰를 읽고 관점을 비교합니다. 근거를 바탕으로 의견을 나누며 논의를 넓혀갑니다.</p>
+<small>DELIBERATION</small>
+</article>
+</div>
+<div class="civic-bottom-note"><b>독립과 책임은 함께 갑니다.</b><span>리뷰는 운영사가 삭제할 수 있지만, 시민 여러분의 자정능력을 기대합니다.</span></div>
+</div>
+</section>
+<section class="section" id="features">
+<div class="wrap">
+<div class="section-head">
+<div class="eyebrow">A CITIZEN-CENTERED CASE PLATFORM</div>
+<h2>시민 리뷰를 중심으로,<br/>판결을 더 깊이 살펴보다</h2>
+<p class="section-desc">시민의 의견을 나누는 기능을 중심에 두고, 판례 검색·원문·AI 도구를 연결했습니다.</p>
+</div>
+<div class="feature-grid">
+
+
+
+
+
+
+<article class="feature">
+<div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 21s-8-4.4-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.6-8 11-8 11Z"></path><path d="M8.5 12h7"></path></svg></div>
+<h3>시민 리뷰와 평가</h3>
+<p>판결에 대한 별점과 의견을 남기고 다른 시민의 리뷰도 읽어보세요. 판결의 이유와 근거를 중심으로 다양한 관점을 나눌 수 있습니다.</p>
+<small>REVIEW · SHARE</small>
+</article><article class="feature">
+<div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 19V5M4 19h17"></path><path d="m7 15 4-4 3 2 5-7"></path><path d="M16 6h3v3"></path></svg></div>
+<h3>이슈 판례 리더보드</h3>
+<p>시민 리뷰를 통해 주목받는 판례와 논의의 흐름을 살펴보세요. 관심의 정도를 참고하되 판결의 옳고 그름을 자동으로 판정하는 순위는 아닙니다.</p>
+<small>ISSUE · LEADERBOARD</small>
+</article><article class="feature">
+<div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5M8 10.8h5.6M10.8 8v5.6"></path></svg></div>
+<h3>빠르고 편리한 판례 검색</h3>
+<p>사건명, 사건번호, 법원명, 키워드로 판례를 찾아보세요. 법원과 사건 종류별 필터로 검색 범위를 좁힐 수 있습니다.</p>
+<small>SEARCH · DISCOVER</small>
+</article><article class="feature">
+<div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M6 3.8h8l4 4V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.8a1 1 0 0 1 1-1Z"></path><path d="M14 4v4h4M8 12h8M8 16h8"></path></svg></div>
+<h3>판결서 원문 확인</h3>
+<p>요약만으로 끝내지 않고 판결서 상세 원문까지 확인할 수 있어 판결의 맥락과 내용을 직접 살펴볼 수 있습니다.</p>
+<small>ORIGINAL · CONTEXT</small>
+</article><article class="feature">
+<div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3 13.9 9.1 20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9L12 3Z"></path><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"></path></svg></div>
+<h3>AI 요약 인사이트</h3>
+<p>판결 내용을 핵심 중심으로 정리해 복잡한 내용을 파악하는 데 도움을 줍니다. 원문과 함께 비교하며 확인해 보세요.</p>
+<small>AI · SUMMARY</small>
+</article><article class="feature">
+<div class="feature-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H20v14H7.5A2.5 2.5 0 0 0 5 19.5v-14Z"></path><path d="M5 19.5A2.5 2.5 0 0 1 7.5 17H20M9 7h7M9 10h7"></path></svg></div>
+<h3>M GPT로 판결문 질문</h3>
+<p>판결문을 읽다가 생긴 궁금증을 질문하고, 문서 내용을 이해하는 데 필요한 설명과 맥락을 확인해 보세요.</p>
+<small>ASK · UNDERSTAND</small>
+</article></div>
+</div>
+</section>
+<section class="ai-band" id="ai">
+<div class="wrap ai-grid">
+<div>
+<div class="eyebrow">SMART AI INSIGHT</div>
+<h2>긴 판결문은 핵심부터,<br/>궁금한 내용은 질문으로</h2>
+<p>AI 요약으로 판결의 주요 내용을 먼저 파악하고, M GPT를 통해 판결문에 관한 질문을 이어가 보세요. 이해를 돕는 도구로 활용하되 중요한 내용은 반드시 원문과 함께 확인할 수 있습니다.</p>
+<div class="ai-list">
+<div><span class="check">✓</span> 핵심 내용과 쟁점 파악을 돕는 AI 요약</div>
+<div><span class="check">✓</span> 판결문 내용에 관해 질문하는 M GPT</div>
+<div><span class="check">✓</span> 요약과 판결서 원문을 함께 확인</div>
+</div>
+</div>
+<div aria-label="M GPT 대화 예시" class="chat-panel">
+<div class="chat-head"><span class="m-avatar">M</span> M GPT <span style="margin-left:auto;color:#dfcc91;font-size:10px;letter-spacing:.12em">CASE ASSISTANT</span></div>
+<div class="chat-bubble chat-question">이 판결에서 법원이 중요하게 본 쟁점은 무엇인가요?</div>
+<div class="chat-bubble chat-answer"><b>핵심 쟁점 정리</b><br/>판결의 사실관계와 법원의 판단 근거를 중심으로 내용을 살펴볼 수 있습니다. 구체적인 판단은 판결서 원문에서 함께 확인해 주세요.</div>
+<div class="chat-foot">대화 UI 예시 · 실제 답변은 판례와 질문 내용에 따라 달라집니다.</div>
+</div>
+</div>
+</section>
+<section class="section steps" id="how">
+<div class="wrap">
+<div class="section-head">
+<div class="eyebrow">FROM READING TO PARTICIPATION</div>
+<h2>판결을 읽고,<br/>시민의 목소리를 더하는 세 단계</h2>
+<p class="section-desc">판례를 확인하고 판단의 맥락을 이해한 뒤, 시민 리뷰로 의견을 나눠보세요.</p>
+</div>
+<div class="step-grid">
+<article class="step"><div class="step-num">STEP </div><h3>관심 있는 판례 찾기</h3><p>사건번호나 키워드로 판례를 검색하고 사건 정보와 판결서 원문을 확인합니다.</p></article>
+<article class="step"><div class="step-num">STEP </div><h3>판결의 이유와 맥락 이해</h3><p>판결서 원문을 읽고 AI 요약과 M GPT를 참고해 쟁점과 판단 근거를 살펴봅니다.</p></article>
+<article class="step"><div class="step-num">STEP </div><h3>시민 리뷰 작성·읽기</h3><p>판결에 대한 별점과 의견을 남기고 다른 시민의 관점을 읽으며 공개적으로 생각을 나눕니다.</p></article>
+</div>
+</div>
+</section>
+
+<div class="wrap notice">
+<div class="notice-inner"><b>이용 안내</b><span>판례인사이트는 판례 정보 탐색과 시민 의견 공유를 위한 서비스입니다. 시민 리뷰는 작성자의 개인 의견으로 법원 또는 법관의 공식 평가가 아니며, 개별 재판에 대한 법적 불복 절차를 대신하지 않습니다. 비판과 토론은 판결의 내용과 공개된 근거를 중심으로 이루어져야 합니다. AI 요약 및 답변은 참고 정보이며, 중요한 내용은 판결서 원문과 공식 자료를 확인해 주세요.</span></div>
+</div>
+<section class="final-cta">
+<div class="wrap">
+<div class="eyebrow" style="justify-content:center">YOUR VOICE · PUBLIC DISCUSSION</div>
+<h2>판결을 읽고, 시민의 목소리를 남겨보세요</h2>
+<p>사법부의 독립을 존중하면서 판결에 대한 이해와 토론에 참여할 수 있습니다.</p>
+<a class="btn btn-primary" href="https://pansamap.maru.ai.kr/" rel="noopener noreferrer" target="_blank">시민 리뷰 참여하기 <span class="arrow">↗</span></a>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap footer-inner">
+<div><a aria-label="판례인사이트 홈" class="footer-brand" href="#top"><svg xmlns="http://www.w3.org/2000/svg" class="footer-logo" width="1000" height="374" viewBox="0 0 1000 374" role="img" aria-labelledby="footer-logo-title"><title id="footer-logo-title">판례인사이트</title><defs><linearGradient id="footer-gradient" x1="0" y1="0" x2="0.18" y2="1"><stop offset="0" stop-color="#5B4C1D"/><stop offset="0.52" stop-color="#705716"/><stop offset="1" stop-color="#896100"/></linearGradient></defs><rect x="44" y="122" width="127" height="128" fill="url(#footer-gradient)"/><path fill="#fff" fill-rule="evenodd" d="M 72 158 L 72 164 L 71 165 L 71 185 L 70 186 L 70 203 L 69 204 L 69 219 L 68 220 L 68 221 L 89 221 L 89 192 L 90 191 L 91 191 L 93 193 L 93 197 L 94 198 L 94 200 L 95 201 L 95 204 L 96 205 L 96 208 L 97 209 L 97 212 L 98 213 L 98 216 L 99 217 L 99 220 L 100 221 L 115 221 L 115 218 L 116 217 L 116 214 L 117 213 L 117 209 L 118 208 L 118 205 L 119 204 L 119 202 L 120 201 L 120 198 L 121 197 L 121 194 L 122 193 L 122 191 L 123 190 L 124 190 L 125 191 L 125 213 L 126 214 L 126 221 L 146 221 L 146 217 L 145 216 L 145 198 L 144 197 L 144 180 L 143 179 L 143 163 L 142 162 L 142 158 L 116 158 L 116 160 L 115 161 L 115 164 L 114 165 L 114 168 L 113 169 L 113 172 L 112 173 L 112 177 L 111 178 L 111 181 L 110 182 L 110 185 L 109 186 L 109 189 L 108 190 L 107 190 L 105 188 L 105 185 L 104 184 L 104 181 L 103 180 L 103 177 L 102 176 L 102 173 L 101 172 L 101 169 L 100 168 L 100 164 L 99 163 L 99 160 L 98 159 L 98 158 Z"/><rect x="217" y="114" width="16" height="140" rx="1" fill="#B4B4B4"/><path fill="#5F4E19" fill-rule="evenodd" d="M 885 228 L 885 241 L 993 241 L 994 240 L 994 228 Z M 300 215 L 300 252 L 381 252 L 381 240 L 318 240 L 316 238 L 316 215 Z M 544 213 L 544 238 L 543 239 L 543 245 L 544 246 L 544 252 L 626 252 L 626 240 L 561 240 L 560 239 L 560 213 Z M 406 146 L 406 158 L 407 159 L 430 159 L 431 160 L 431 178 L 430 179 L 407 179 L 407 213 L 406 214 L 406 217 L 407 218 L 407 227 L 436 227 L 437 226 L 445 226 L 446 225 L 452 225 L 453 224 L 453 221 L 452 220 L 452 212 L 445 212 L 444 213 L 435 213 L 434 214 L 424 214 L 422 212 L 422 193 L 423 192 L 446 192 L 446 146 Z M 671 144 L 671 172 L 670 173 L 670 178 L 669 179 L 669 182 L 668 183 L 668 185 L 667 186 L 667 188 L 666 189 L 666 190 L 665 191 L 665 192 L 664 193 L 664 194 L 663 195 L 663 196 L 662 197 L 662 198 L 660 200 L 660 201 L 657 204 L 657 205 L 651 211 L 650 211 L 648 213 L 647 213 L 645 215 L 644 215 L 643 216 L 642 216 L 642 217 L 645 220 L 645 221 L 648 224 L 648 225 L 651 228 L 651 229 L 653 229 L 654 228 L 655 228 L 657 226 L 658 226 L 661 223 L 662 223 L 666 219 L 666 218 L 670 214 L 670 213 L 672 211 L 672 210 L 673 209 L 673 208 L 674 207 L 674 206 L 675 205 L 675 204 L 676 203 L 676 202 L 677 201 L 677 200 L 678 199 L 678 197 L 679 196 L 680 196 L 681 197 L 681 198 L 682 199 L 682 201 L 683 202 L 683 203 L 684 204 L 684 205 L 685 206 L 685 207 L 686 208 L 686 209 L 688 211 L 688 212 L 691 215 L 691 216 L 698 223 L 699 223 L 701 225 L 702 225 L 704 227 L 706 227 L 707 226 L 707 225 L 710 222 L 710 221 L 714 217 L 714 216 L 715 215 L 715 214 L 714 214 L 712 212 L 711 212 L 708 209 L 707 209 L 701 203 L 701 202 L 698 199 L 698 198 L 696 196 L 696 195 L 695 194 L 695 193 L 694 192 L 694 191 L 693 190 L 693 188 L 692 187 L 692 186 L 691 185 L 691 182 L 690 181 L 690 178 L 689 177 L 689 173 L 688 172 L 688 144 Z M 285 145 L 285 157 L 294 157 L 295 158 L 295 192 L 293 194 L 282 194 L 282 195 L 283 196 L 283 203 L 284 204 L 284 207 L 290 207 L 291 206 L 321 206 L 322 205 L 334 205 L 335 204 L 343 204 L 344 203 L 350 203 L 351 202 L 354 202 L 354 195 L 353 194 L 353 190 L 352 190 L 351 191 L 343 191 L 342 192 L 341 192 L 339 190 L 339 159 L 341 157 L 349 157 L 349 144 L 286 144 Z M 312 157 L 323 157 L 324 158 L 324 191 L 322 193 L 311 193 L 310 192 L 310 159 Z M 898 143 L 898 196 L 897 197 L 897 199 L 898 200 L 898 209 L 982 209 L 982 197 L 915 197 L 914 196 L 914 184 L 916 182 L 978 182 L 978 170 L 915 170 L 914 169 L 914 157 L 915 156 L 981 156 L 981 143 Z M 794 143 L 793 144 L 790 144 L 789 145 L 788 145 L 787 146 L 786 146 L 785 147 L 784 147 L 776 155 L 776 156 L 774 158 L 774 159 L 773 160 L 773 161 L 772 162 L 772 164 L 771 165 L 771 167 L 770 168 L 770 171 L 769 172 L 769 177 L 768 178 L 768 193 L 769 194 L 769 199 L 770 200 L 770 203 L 771 204 L 771 206 L 772 207 L 772 209 L 773 210 L 773 211 L 774 212 L 774 213 L 776 215 L 776 216 L 779 219 L 779 220 L 781 222 L 782 222 L 784 224 L 785 224 L 787 226 L 789 226 L 790 227 L 792 227 L 793 228 L 806 228 L 807 227 L 809 227 L 810 226 L 811 226 L 812 225 L 813 225 L 814 224 L 815 224 L 823 216 L 823 215 L 824 214 L 824 213 L 825 212 L 825 211 L 826 210 L 826 209 L 827 208 L 827 207 L 828 206 L 828 203 L 829 202 L 829 199 L 830 198 L 830 191 L 831 190 L 831 181 L 830 180 L 830 173 L 829 172 L 829 169 L 828 168 L 828 166 L 827 165 L 827 163 L 826 162 L 826 161 L 825 160 L 825 159 L 824 158 L 824 157 L 822 155 L 822 154 L 816 148 L 815 148 L 813 146 L 812 146 L 811 145 L 810 145 L 809 144 L 806 144 L 805 143 Z M 795 158 L 804 158 L 806 160 L 807 160 L 809 162 L 809 163 L 811 165 L 811 166 L 812 167 L 812 168 L 813 169 L 813 171 L 814 172 L 814 176 L 815 177 L 815 194 L 814 195 L 814 199 L 813 200 L 813 202 L 812 203 L 812 204 L 811 205 L 811 206 L 810 207 L 810 208 L 806 212 L 805 212 L 804 213 L 802 213 L 801 214 L 798 214 L 797 213 L 795 213 L 794 212 L 793 212 L 788 207 L 788 206 L 787 205 L 787 204 L 786 203 L 786 201 L 785 200 L 785 196 L 784 195 L 784 176 L 785 175 L 785 171 L 786 170 L 786 168 L 787 167 L 787 166 L 789 164 L 789 163 L 793 159 L 794 159 Z M 545 144 L 544 145 L 543 145 L 542 146 L 541 146 L 540 147 L 539 147 L 536 150 L 535 150 L 532 153 L 532 154 L 529 157 L 529 158 L 528 159 L 528 160 L 527 161 L 527 163 L 526 164 L 526 169 L 525 170 L 525 175 L 526 176 L 526 180 L 527 181 L 527 183 L 528 184 L 528 185 L 529 186 L 529 187 L 530 188 L 530 189 L 534 193 L 534 194 L 535 194 L 538 197 L 539 197 L 541 199 L 542 199 L 543 200 L 545 200 L 546 201 L 548 201 L 549 202 L 555 202 L 556 203 L 560 203 L 561 202 L 567 202 L 568 201 L 570 201 L 571 200 L 572 200 L 573 199 L 574 199 L 575 198 L 576 198 L 578 196 L 579 196 L 585 190 L 585 189 L 586 188 L 586 187 L 588 185 L 588 183 L 589 182 L 589 180 L 590 179 L 590 166 L 589 165 L 589 163 L 588 162 L 588 160 L 587 159 L 587 158 L 585 156 L 585 155 L 578 148 L 577 148 L 575 146 L 573 146 L 572 145 L 571 145 L 570 144 L 568 144 L 567 143 L 562 143 L 561 142 L 554 142 L 553 143 L 549 143 L 548 144 Z M 551 157 L 553 157 L 554 156 L 561 156 L 562 157 L 564 157 L 565 158 L 566 158 L 567 159 L 568 159 L 572 163 L 572 164 L 573 165 L 573 166 L 574 167 L 574 177 L 573 178 L 573 180 L 571 182 L 571 183 L 569 185 L 568 185 L 566 187 L 565 187 L 564 188 L 560 188 L 559 189 L 556 189 L 555 188 L 552 188 L 551 187 L 550 187 L 549 186 L 548 186 L 544 182 L 544 181 L 542 179 L 542 176 L 541 175 L 541 170 L 542 169 L 542 166 L 543 165 L 543 164 L 549 158 L 550 158 Z M 466 136 L 466 163 L 465 164 L 453 164 L 453 177 L 465 177 L 466 178 L 466 193 L 465 194 L 453 194 L 453 207 L 465 207 L 466 208 L 466 249 L 481 249 L 481 136 Z M 722 135 L 722 255 L 738 255 L 738 195 L 739 194 L 755 194 L 755 181 L 739 181 L 738 180 L 738 135 Z M 607 135 L 607 220 L 623 220 L 623 135 Z M 361 135 L 361 223 L 377 223 L 377 183 L 378 182 L 393 182 L 393 169 L 378 169 L 377 168 L 377 135 Z M 848 134 L 848 255 L 864 255 L 864 134 Z M 491 134 L 491 254 L 506 254 L 506 134 Z"/></svg></a><div class="footer-copy">CASE · INSIGHT · TOGETHER</div></div>
+<a class="footer-link" href="https://pansamap.maru.ai.kr/" rel="noopener noreferrer" target="_blank">서비스 방문 ↗</a>
+<div class="footer-copy">© MARU Applications. All rights reserved.</div>
+</div>
+</footer>
+</body>
+</html>
